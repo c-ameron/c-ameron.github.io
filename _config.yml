@@ -74,13 +74,13 @@ projects: false
 
 # if you don't need "about" or "blog", comment them out below
 about: false # turn off until I have a description
-blog: false # disable until I do a post
+blog: true
 
 # do you want to show the "read time" of the posts?
 read-time: false
 
 # do you want to show the "tags" inside the posts?
-show-tags: false
+show-tags: true
 
 # related posts inside a post?
 related: false
