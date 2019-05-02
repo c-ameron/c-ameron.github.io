@@ -48,9 +48,11 @@ pub fn add(num1: i32, num2: i32) -> i32 {
 
 ## Fetching crates in private repositories
 
-Before we go any further, we're going to take a page from Ruby Bundler's book and create a local `.cargo` folder. This will provide a project independent place to store our crates and Cargo config
+Before we go any further, we're going to take a page from Ruby Bundler's book and create a local `.cargo` folder in the project root. This will provide a project independent place to store our crates and Cargo config
 
 ``` bash
+git clone git@github.com:c-ameron/rocket-add.git
+cd rocket-add
 mkdir -p $(git rev-parse --show-toplevel)/.cargo
 export CARGO_HOME=$(git rev-parse --show-toplevel)/.cargo
 ```
@@ -59,6 +61,7 @@ Currently Cargo by default won't [fetch from private repositories](https://githu
 
 To get around this, create a `.cargo/config` file which tells Cargo to use the [git cli for fetching](https://doc.rust-lang.org/nightly/cargo/reference/config.html#configuration-keys)
 ```
+$ cat .cargo/config
 [net]
 git-fetch-with-cli = true
 ```
@@ -115,3 +118,4 @@ In the second blog post, I will be showing approaches to improve and optimize th
 
  - Docker has implemented experimental support for SSH forwarding for building images in [18.09](https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds), potentially negating the need for copying `.cargo` in the future
  - If you want to fetch or build an image completely offline with Cargo, you can use the `-Z offline` flag. See <https://doc.rust-lang.org/cargo/reference/unstable.html#offline-mode>
+ - With recently released Rust 1.34, Cargo now has support for [alternative registries](https://blog.rust-lang.org/2019/04/11/Rust-1.34.0.html#alternative-cargo-registries) other than `crates.io`
