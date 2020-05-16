@@ -11,8 +11,6 @@ tags: [rust, docker, git, cargo, github]
 
 In this article, I'm going to show you how to fetch private Cargo dependencies and source them when building a Docker image. This solves a key issue with Docker of not copying over SSH keys when building an image
 
-This is the first of two blog posts on building Docker images for Rust applications. The second article will discuss techniques on improving and optimizing build speeds
-
 The code for this blog post is at <https://github.com/c-ameron/rocket-add>
 
 ## Example Application: Rocket-Add
@@ -110,8 +108,6 @@ ENTRYPOINT ["/usr/local/bin/rocket-add"]
 ```
 
 This approach saves time downloading the same crates and we also don't need to pass any SSH keys to Docker. However, if there's any change to our dependencies it will require a rebuild. For a larger application with a lot of changing dependencies, this often means rebuilding from scratch several times a day
-
-In the second blog post, I will be showing approaches to improve and optimize these Docker build speeds
 
 
 ## Notes
